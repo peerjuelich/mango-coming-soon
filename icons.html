@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coming Soon · App Icon Concepts · Mango Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{--base:#0a0710;--orange:#FB8B2E;--orange-b:#FFB861;--ink:#F3ECE3;--muted:rgba(243,236,227,.55);--ease:cubic-bezier(.2,.8,.2,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#000}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  .page{position:relative;min-height:100vh;overflow:hidden;isolation:isolate;
+    background:radial-gradient(120% 80% at 14% 0%, #241606 0%, transparent 44%),linear-gradient(172deg,#1d1208 0%, var(--base) 48%, #060409 100%)}
+  .aurora{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(30% 34% at 12% 6%, rgba(251,139,46,.28), transparent 60%),radial-gradient(34% 36% at 90% 80%, rgba(139,92,246,.12), transparent 62%);
+    filter:blur(40px)}
+  .gridbg{position:absolute;inset:0;z-index:1;opacity:.34;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:60px 60px;-webkit-mask-image:radial-gradient(120% 60% at 50% 0%,#000 22%,transparent 88%);mask-image:radial-gradient(120% 60% at 50% 0%,#000 22%,transparent 88%)}
+
+  .wrap{position:relative;z-index:5;max-width:1180px;margin:0 auto;padding:clamp(28px,4vw,52px) clamp(22px,4.5vw,56px) clamp(60px,8vw,100px)}
+  .brandbar{display:flex;align-items:center;gap:13px;margin-bottom:clamp(30px,5vh,52px)}
+  .mlogo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(125% 125% at 28% 20%,#1b1726,#0a0810);border:1px solid rgba(255,138,46,.34)}
+  .mlogo svg{width:78%;height:78%}
+  .wm{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(15px,1.6vw,20px);letter-spacing:-.01em}.wm span{color:var(--orange-b)}
+
+  .kick{display:inline-flex;align-items:center;gap:10px;padding:8px 17px;border-radius:999px;background:rgba(251,139,46,.12);border:1px solid rgba(251,139,46,.45);font-weight:800;font-size:clamp(11px,1.1vw,13px);letter-spacing:.15em;text-transform:uppercase;color:var(--orange-b)}
+  h1{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.03em;line-height:.95;margin:clamp(14px,2vh,22px) 0 0;font-size:clamp(34px,5.5vw,60px)}
+  .lead{margin-top:14px;max-width:60ch;font-size:clamp(14px,1.45vw,18px);line-height:1.55;color:rgba(243,236,227,.72);font-weight:500}
+
+  .board{margin-top:clamp(34px,5vw,56px);display:grid;gap:clamp(20px,2.4vw,30px);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+  .card{position:relative;border-radius:22px;padding:clamp(20px,2vw,28px);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.09);box-shadow:0 40px 80px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;gap:16px}
+  .card.rec{border-color:rgba(251,139,46,.5);box-shadow:0 40px 80px -46px rgba(251,139,46,.45), inset 0 1px 0 rgba(255,255,255,.06)}
+  .rectag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1a0f04;background:linear-gradient(180deg,var(--orange-b),var(--orange));box-shadow:0 8px 20px -8px rgba(251,139,46,.7)}
+
+  /* icon frame — establishes the container for cq units, so the SAME markup scales to any size */
+  .frame{container-type:size;position:relative;border-radius:22.6%;overflow:hidden;flex:0 0 auto;
+    box-shadow:0 24px 48px -18px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.08)}
+  .frame.big{width:clamp(168px,40vw,210px);height:clamp(168px,40vw,210px)}
+  .frame.mini{width:56px;height:56px;box-shadow:0 8px 16px -6px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.08)}
+  .tile{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:5cqw}
+
+  /* --- shared icon internals (all sized in cqw → scale with the frame) --- */
+  .mango{width:58cqw;height:58cqw;filter:drop-shadow(0 5cqw 9cqw rgba(0,0,0,.55)) drop-shadow(0 0 7cqw rgba(251,139,46,.32))}
+  .mono{color:#fff}
+  .stack,.soon{font-family:"Archivo",sans-serif;font-weight:900;text-align:center;line-height:.82;letter-spacing:-.045em}
+  .stack>span{display:block;white-space:nowrap}
+  .grad{background:linear-gradient(92deg,#FFD9A6,var(--orange-b) 55%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .outline{color:transparent;-webkit-text-stroke:.85cqw rgba(255,184,97,.9)}
+  .outline .dot{-webkit-text-stroke:0;color:var(--orange)}
+
+  /* tile backgrounds */
+  .t-dark{background:radial-gradient(120% 120% at 50% 36%, #2c1707 0%, #130b15 56%, #07050b 100%)}
+  .t-orange{background:linear-gradient(150deg,#FFC22A 0%, #FB8B2E 48%, #F2640A 100%)}
+  .t-orange::after{content:"";position:absolute;inset:0;background:radial-gradient(85% 60% at 50% -8%, rgba(255,255,255,.4), transparent 58%);pointer-events:none}
+  .t-orange .mono{filter:drop-shadow(0 4cqw 7cqw rgba(120,40,0,.4))}
+  .t-type{background:radial-gradient(125% 105% at 50% 0%, #2a1707 0%, #0a0710 62%)}
+  .t-hybrid{background:radial-gradient(120% 115% at 50% 34%, #2c1707 0%, #0c0712 58%, #07050b 100%)}
+
+  /* per-concept sizing */
+  .t-orange .mono{width:60cqw;height:60cqw}
+  .t-type .minimango{width:15cqw;height:15cqw;color:var(--orange-b);margin-bottom:1cqw}
+  .t-type .stack{font-size:20.5cqw}
+  .t-hybrid .mango{width:44cqw;height:44cqw}
+  .t-hybrid .soon{font-size:21cqw;letter-spacing:.01em}
+
+  .meta{text-align:center}
+  .meta h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:17px;letter-spacing:-.01em}
+  .meta p{margin-top:5px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+  .row{display:flex;align-items:center;gap:14px}
+  .row .lab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .dl{margin-top:2px;display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:11px;cursor:pointer;font:inherit;font-weight:700;font-size:13px;color:#1a0f04;background:linear-gradient(180deg,var(--orange-b),var(--orange));border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 24px -10px rgba(251,139,46,.6);transition:transform .15s var(--ease),filter .15s}
+  .dl svg{width:15px;height:15px;fill:none;stroke:#1a0f04;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+  .dl:hover{transform:translateY(-2px);filter:brightness(1.05)}.dl:disabled{opacity:.7;cursor:wait}
+</style>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <linearGradient id="mgo-b" gradientUnits="userSpaceOnUse" x1="44" y1="14" x2="54" y2="90"><stop offset="0" stop-color="#FDA90A"/><stop offset="1" stop-color="#F75F03"/></linearGradient>
+    <linearGradient id="mgo-l" gradientUnits="userSpaceOnUse" x1="40" y1="12" x2="56" y2="82"><stop offset="0" stop-color="#FFC71C"/><stop offset=".55" stop-color="#FDA206"/><stop offset="1" stop-color="#FB8104"/></linearGradient>
+    <symbol id="i-mango" viewBox="0 0 100 100"><path fill="url(#mgo-b)" d="M60.1 7.9 L61.4 7.9 L62.1 8.2 L64.8 8.2 L69.1 9.2 L72.2 10.3 L75.0 11.7 L77.2 13.1 L79.5 15.1 L82.0 17.7 L84.4 21.1 L86.8 25.9 L88.2 30.1 L89.2 35.4 L89.2 43.7 L88.5 48.1 L87.4 52.5 L85.9 56.3 L83.7 60.9 L80.3 66.3 L77.6 69.8 L71.2 76.5 L65.6 81.0 L61.8 83.5 L58.0 85.6 L53.2 87.8 L49.4 89.3 L43.4 90.9 L39.6 91.6 L34.7 92.1 L30.2 92.1 L26.1 91.6 L21.7 90.7 L18.2 89.3 L15.5 87.6 L13.3 85.4 L11.7 82.7 L10.7 78.8 L10.8 75.4 L12.2 71.0 L13.8 68.1 L15.3 65.5 L16.0 64.8 L16.7 63.2 L17.4 62.3 L20.5 55.7 L20.5 55.1 L20.8 54.9 L22.5 49.4 L23.3 44.7 L23.6 44.3 L23.6 43.2 L23.9 42.8 L23.9 41.5 L24.3 40.5 L24.3 39.4 L24.6 39.0 L25.3 35.4 L26.7 31.5 L28.4 28.0 L30.1 25.0 L32.1 22.6 L33.0 20.9 L37.5 16.5 L40.3 14.4 L43.5 12.4 L49.3 9.9 L54.8 8.5 L55.9 8.5 L56.5 8.2 L59.3 8.2 Z"/><path fill="url(#mgo-l)" d="M60.1 8.2 L64.6 8.5 L65.5 8.9 L66.7 8.9 L67.0 9.2 L69.6 9.6 L74.9 12.0 L78.1 14.1 L81.3 17.3 L83.4 20.1 L85.4 23.5 L87.6 29.1 L82.8 23.1 L82.3 26.7 L81.4 30.1 L78.9 35.9 L75.4 40.8 L70.7 45.2 L65.6 48.6 L59.7 51.5 L53.2 54.1 L43.1 57.3 L36.1 60.1 L31.1 62.8 L26.9 65.8 L22.1 70.5 L18.8 75.1 L17.4 77.9 L16.3 81.2 L15.7 84.0 L15.7 87.2 L15.5 87.3 L13.8 85.5 L11.9 82.7 L10.8 77.9 L11.2 76.8 L11.2 75.3 L12.6 71.0 L18.1 61.7 L20.8 56.0 L22.9 49.4 L22.9 48.1 L23.6 46.3 L23.6 45.0 L23.9 44.6 L23.9 43.5 L24.3 42.8 L24.6 39.7 L25.0 39.0 L25.7 35.2 L27.1 31.4 L29.5 26.6 L31.2 23.9 L32.5 22.6 L33.3 21.1 L37.5 16.9 L43.2 13.0 L48.3 10.6 L51.3 9.6 L52.3 9.6 L53.0 9.2 L54.1 9.2 L54.5 8.9 L55.9 8.9 L56.8 8.5 L59.7 8.5 Z"/></symbol>
+    <symbol id="i-mango-mono" viewBox="0 0 100 100"><path fill="currentColor" d="M60.1 7.9 L61.4 7.9 L62.1 8.2 L64.8 8.2 L69.1 9.2 L72.2 10.3 L75.0 11.7 L77.2 13.1 L79.5 15.1 L82.0 17.7 L84.4 21.1 L86.8 25.9 L88.2 30.1 L89.2 35.4 L89.2 43.7 L88.5 48.1 L87.4 52.5 L85.9 56.3 L83.7 60.9 L80.3 66.3 L77.6 69.8 L71.2 76.5 L65.6 81.0 L61.8 83.5 L58.0 85.6 L53.2 87.8 L49.4 89.3 L43.4 90.9 L39.6 91.6 L34.7 92.1 L30.2 92.1 L26.1 91.6 L21.7 90.7 L18.2 89.3 L15.5 87.6 L13.3 85.4 L11.7 82.7 L10.7 78.8 L10.8 75.4 L12.2 71.0 L13.8 68.1 L15.3 65.5 L16.0 64.8 L16.7 63.2 L17.4 62.3 L20.5 55.7 L20.5 55.1 L20.8 54.9 L22.5 49.4 L23.3 44.7 L23.6 44.3 L23.6 43.2 L23.9 42.8 L23.9 41.5 L24.3 40.5 L24.3 39.4 L24.6 39.0 L25.3 35.4 L26.7 31.5 L28.4 28.0 L30.1 25.0 L32.1 22.6 L33.0 20.9 L37.5 16.5 L40.3 14.4 L43.5 12.4 L49.3 9.9 L54.8 8.5 L55.9 8.5 L56.5 8.2 L59.3 8.2 Z"/></symbol>
+  </defs></svg>
+
+  <div class="page">
+    <div class="aurora"></div>
+    <div class="gridbg"></div>
+    <div class="wrap">
+      <div class="brandbar"><span class="mlogo"><svg viewBox="0 0 100 100"><use href="#i-mango"/></svg></span><span class="wm">MANGO<span> STUDIO</span></span></div>
+
+      <span class="kick">App Icon · Concepts</span>
+      <h1>Coming Soon — pick your icon.</h1>
+      <p class="lead">Four directions in the Mango look, from pure-mark to your two-word stack. Each is shown at app size and at 56px so you can see what stays legible on a home screen.</p>
+
+      <div class="board">
+
+        <!-- Concept A -->
+        <div class="card">
+          <div class="frame big"><div class="tile t-dark"><svg class="mango" viewBox="0 0 100 100"><use href="#i-mango"/></svg></div></div>
+          <div class="meta"><h3>A · The Mark</h3><p>Pure brand. Mango on the dark cinematic base. Most timeless, scales to anything.</p></div>
+          <div class="row"><span class="lab">56px</span><div class="frame mini"><div class="tile t-dark"><svg class="mango" viewBox="0 0 100 100"><use href="#i-mango"/></svg></div></div></div>
+          <button class="dl" data-file="icon-A-the-mark"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>PNG set</button>
+        </div>
+
+        <!-- Concept B -->
+        <div class="card">
+          <div class="frame big"><div class="tile t-orange"><svg class="mango mono" viewBox="0 0 100 100"><use href="#i-mango-mono"/></svg></div></div>
+          <div class="meta"><h3>B · Mango Pop</h3><p>White mango on the signature orange gradient. Brightest — jumps off a home screen.</p></div>
+          <div class="row"><span class="lab">56px</span><div class="frame mini"><div class="tile t-orange"><svg class="mango mono" viewBox="0 0 100 100"><use href="#i-mango-mono"/></svg></div></div></div>
+          <button class="dl" data-file="icon-B-mango-pop"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>PNG set</button>
+        </div>
+
+        <!-- Concept C -->
+        <div class="card">
+          <div class="frame big"><div class="tile t-type"><svg class="minimango" viewBox="0 0 100 100"><use href="#i-mango-mono"/></svg><div class="stack"><span class="grad">COMING</span><span class="outline">SOON<span class="dot">.</span></span></div></div></div>
+          <div class="meta"><h3>C · The Stack</h3><p>Your two-word idea — headline type, straight from the page. Boldest, but softens when tiny.</p></div>
+          <div class="row"><span class="lab">56px</span><div class="frame mini"><div class="tile t-type"><svg class="minimango" viewBox="0 0 100 100"><use href="#i-mango-mono"/></svg><div class="stack"><span class="grad">COMING</span><span class="outline">SOON<span class="dot">.</span></span></div></div></div></div>
+          <button class="dl" data-file="icon-C-the-stack"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>PNG set</button>
+        </div>
+
+        <!-- Concept D · recommended -->
+        <div class="card rec">
+          <span class="rectag">My pick</span>
+          <div class="frame big"><div class="tile t-hybrid"><svg class="mango" viewBox="0 0 100 100"><use href="#i-mango"/></svg><span class="soon grad">SOON</span></div></div>
+          <div class="meta"><h3>D · Mango + Soon</h3><p>Mark for instant recognition, “SOON” for meaning. Branded <i>and</i> legible at any size.</p></div>
+          <div class="row"><span class="lab">56px</span><div class="frame mini"><div class="tile t-hybrid"><svg class="mango" viewBox="0 0 100 100"><use href="#i-mango"/></svg><span class="soon grad">SOON</span></div></div></div>
+          <button class="dl" data-file="icon-D-mango-soon"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>PNG set</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+  <script>
+    // Build each icon at an EXACT pixel size (no container-query units) so the export is
+    // full-bleed and correctly proportioned. The OS rounds the square corners itself.
+    function makeNode(letter, S){
+      const wrap = document.createElement('div');
+      wrap.style.cssText = `position:fixed;left:-99999px;top:0;width:${S}px;height:${S}px;overflow:hidden`;
+      const C = `position:relative;width:${S}px;height:${S}px;display:grid;place-items:center;align-content:center`;
+      let html = '';
+      if (letter === 'A') {
+        html = `<div class="tile t-dark" style="${C}"><svg viewBox="0 0 100 100" style="width:${S*0.58}px;height:${S*0.58}px;filter:drop-shadow(0 ${S*0.05}px ${S*0.09}px rgba(0,0,0,.55)) drop-shadow(0 0 ${S*0.07}px rgba(251,139,46,.32))"><use href="#i-mango"/></svg></div>`;
+      } else if (letter === 'B') {
+        html = `<div class="tile t-orange" style="${C}"><svg viewBox="0 0 100 100" style="width:${S*0.60}px;height:${S*0.60}px;color:#fff;filter:drop-shadow(0 ${S*0.04}px ${S*0.07}px rgba(120,40,0,.4))"><use href="#i-mango-mono"/></svg></div>`;
+      } else if (letter === 'C') {
+        const m = document.createElement('span');
+        m.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-family:Archivo,sans-serif;font-weight:900;letter-spacing:-.045em;font-size:200px';
+        m.textContent = 'COMING'; document.body.appendChild(m);
+        const fs = 200 * (0.80 * S) / m.getBoundingClientRect().width; m.remove();
+        html = `<div class="tile t-type" style="${C};gap:${S*0.045}px">
+          <svg viewBox="0 0 100 100" style="width:${S*0.14}px;height:${S*0.14}px;margin-bottom:${S*0.012}px;color:#FFB861"><use href="#i-mango-mono"/></svg>
+          <div class="stack" style="font-size:${fs}px">
+            <span class="grad">COMING</span>
+            <span class="outline" style="-webkit-text-stroke:${fs*0.042}px rgba(255,184,97,.92)">SOON<span style="-webkit-text-stroke:0;color:#FB8104">.</span></span>
+          </div></div>`;
+      } else { // D
+        html = `<div class="tile t-hybrid" style="${C};gap:${S*0.03}px">
+          <svg viewBox="0 0 100 100" style="width:${S*0.44}px;height:${S*0.44}px;filter:drop-shadow(0 ${S*0.04}px ${S*0.08}px rgba(0,0,0,.5))"><use href="#i-mango"/></svg>
+          <span class="soon grad" style="font-size:${S*0.21}px;letter-spacing:.01em">SOON</span></div>`;
+      }
+      wrap.innerHTML = html; document.body.appendChild(wrap); return wrap;
+    }
+    async function toPngSized(letter, S){
+      const node = makeNode(letter, S);
+      const url = await htmlToImage.toPng(node, { pixelRatio: 1, width: S, height: S, cacheBust: true });
+      node.remove(); return url;
+    }
+    async function exportSet(letter, btn){
+      const sizes = [1024, 512, 180, 32];
+      const lbl = btn.lastChild, t = lbl.textContent; btn.disabled = true;
+      try {
+        await document.fonts.ready;
+        await toPngSized(letter, 96);                  // warm-up pass so the web font embeds
+        for (const S of sizes){
+          lbl.textContent = ' ' + S + 'px…';
+          const url = await toPngSized(letter, S);
+          const a = document.createElement('a'); a.download = `mango-coming-soon-${letter}-${S}.png`; a.href = url; a.click();
+          await new Promise(r => setTimeout(r, 320));
+        }
+        lbl.textContent = ' ✓ saved'; await new Promise(r => setTimeout(r, 900));
+      } catch(e){ alert('Export failed: ' + e.message); }
+      btn.disabled = false; lbl.textContent = t;
+    }
+    document.querySelectorAll('.dl').forEach(btn => {
+      const letter = btn.dataset.file.split('-')[1];   // icon-C-the-stack -> C
+      btn.addEventListener('click', () => exportSet(letter, btn));
+    });
+  </script>
+</body>
+</html>
